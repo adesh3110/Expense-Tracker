@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import expenceTracker from "../assets/expense_track.jpeg";
 
 function AuthLayout() {
   return (
@@ -9,7 +10,7 @@ function AuthLayout() {
             Expense Manager
           </p>
           <div className='flex justify-center items-center mt-32 h-3/6 bg-red-200 relative'>
-            <img src='expense_track.jpeg' alt='' className=' object-cover ' />
+            <img src={expenceTracker} alt='' className=' object-cover ' />
           </div>
         </div>
         <div className='w-6/12 h-full'>
