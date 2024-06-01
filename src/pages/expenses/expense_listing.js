@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CreateExpense from "./create_expenses";
 
-const ExpenseCard = (/*{ expense, budget }*/) => {
-  const expense = {
-    name: "Adesh",
-    category: "Electronic",
-    amount: 500,
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur aperiam optio blanditiis magnam ipsam totam quis officiis, ipsa unde ratione perspiciatis tempora animi dolores ullam laboriosam laudantium esse expedita veritatis dolor impedit eaque facilis iure quibusdam earum. Numquam ipsum labore deserunt nulla esse modi, quas itaque, culpa nostrum, amet sint!",
-  };
+const ExpenseListing = (/*{ expense, budget }*/) => {
+  const [epense, setExpense] = useState([]);
+  const expense = {};
+
+  const navigate = useNavigate();
+  // useEffect(()=>{
+  //   const expense = dis
+  // })
   return (
     <div className='m-2'>
+      <button
+        className='w-full bg-blue-500 text-white font-bold py-4 px-8 mt-8 mb-8 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+        onClick={() => {
+          navigate("create-expense");
+        }}
+      >
+        Create Expense
+      </button>
       <div className='bg-white shadow-md rounded-lg p-4 mb-4'>
         <h2 className='text-lg font-bold mb-2'>{expense.name}</h2>
         <div className='flex justify-between items-center mb-2'>
@@ -30,4 +40,4 @@ const ExpenseCard = (/*{ expense, budget }*/) => {
   );
 };
 
-export default ExpenseCard;
+export default ExpenseListing;

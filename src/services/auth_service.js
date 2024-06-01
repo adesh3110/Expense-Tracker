@@ -7,6 +7,7 @@ async function loginHandler(payload) {
     return response?.data;
   } catch (err) {
     console.log(err);
+    return err;
   }
 }
 
@@ -20,15 +21,16 @@ async function registerHandler(payload) {
   }
 }
 
-async function me(payload) {
+async function me() {
   const path = "v1/auth/me";
+  const token = localStorage.getItem("token");
+  if (token == null) return null;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
   try {
-    const token = localStorage.getItem("token");
-    if (token == null) return null;
     const response = await axiosInstance.get(path, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: headers,
     });
     return response?.data;
   } catch (err) {

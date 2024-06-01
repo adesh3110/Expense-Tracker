@@ -4,7 +4,10 @@ import RegistrationPage from "./pages/register";
 import AuthLayout from "./layouts/auth_layout";
 import Profile from "./pages/profile";
 import MainLayout from "./layouts/main_layout";
-import ExpenseCard from "./pages/ExpenseCard";
+import ExpenseListing from "./pages/expenses/expense_listing";
+import CreateExpense from "./pages/expenses/create_expenses";
+import CategoryListing from "./pages/category/category_listing";
+import CreateCategory from "./pages/category/create_category";
 
 function App() {
   return (
@@ -17,7 +20,16 @@ function App() {
           </Route>
           <Route element={<MainLayout />}>
             <Route path='profile' element={<Profile />}></Route>
-            <Route path='expenses' element={<ExpenseCard />}></Route>
+            <Route path='expenses' element={<ExpenseListing />}></Route>
+            <Route path='categories' element={<CategoryListing />}></Route>
+            <Route
+              path='expenses/create-expense'
+              element={<CreateExpense />}
+            ></Route>
+            <Route
+              path='categories/create-category'
+              element={<CreateCategory />}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>

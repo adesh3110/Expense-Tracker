@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 function MainLayout() {
@@ -14,12 +14,15 @@ function MainLayout() {
               </Link>
             </li>
             <li>
-              <Link to='#' className='text-white hover:text-gray-400'>
+              <Link
+                to='create-expenses'
+                className='text-white hover:text-gray-400'
+              >
                 Create
               </Link>
             </li>
             <li>
-              <Link to='#' className='text-white hover:text-gray-400'>
+              <Link to='categories' className='text-white hover:text-gray-400'>
                 Category
               </Link>
             </li>
