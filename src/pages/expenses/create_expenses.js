@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createExpense } from "../../services/create";
+import { useNavigate } from "react-router-dom";
+import { getAllCategory } from "../../services/display";
 const CreateExpense = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     amount: 0,
     categoryId: "",
   });
+  const [category, setCategory] = useState();
+
+  const fetchCategory = async () => {
+    const data = await getAllCategory();
+    setCategory(data);
+  };
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,11 +29,12 @@ const CreateExpense = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
     // You can add additional code here to handle form submission, e.g., sending data to an API
-    createExpense(formData);
+    await createExpense(formData);
+    navigate("/expenses");
   };
 
   return (
@@ -83,7 +97,18 @@ const CreateExpense = () => {
           >
             Category ID:
           </label>
-          <input
+          <select
+            onChange={handleChange}
+            name='categoryId'
+            id='categoryID'
+            className='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md'
+          >
+            {category &&
+              category.map((e) => {
+                return <option value={e["_id"]}>{e["title"]}</option>;
+              })}
+          </select>
+          {/* <input
             type='text'
             id='categoryId'
             name='categoryId'
@@ -91,8 +116,9 @@ const CreateExpense = () => {
             onChange={handleChange}
             className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
             required
-          />
+          /> */}
         </div>
+
         <button
           type='submit'
           className='w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'

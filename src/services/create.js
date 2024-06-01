@@ -32,4 +32,20 @@ async function createCategory(payload) {
   }
 }
 
-export { createExpense, createCategory };
+async function updateCategory(id, payload) {
+  const path = `v1/category/${id}`;
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const response = await axiosInstance.put(path, payload, {
+      headers: headers,
+    });
+    return response?.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export { createExpense, createCategory, updateCategory };

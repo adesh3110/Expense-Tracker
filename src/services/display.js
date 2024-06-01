@@ -1,7 +1,7 @@
 import axiosInstance from "../helper/axios";
 
-async function getAllCategory() {
-  const path = "/v1/category?limit=10&page=1";
+async function getCategoryById(id) {
+  const path = `/v1/category/${id}`;
   const token = localStorage.getItem("token");
 
   const response = await axiosInstance.get(path, {
@@ -9,10 +9,24 @@ async function getAllCategory() {
       Authorization: `Bearer ${token}`,
     },
   });
+  const category = response?.["data"]["data"];
+  return category;
+}
 
-  console.log(response);
+async function getAllCategory(page) {
+  const path = "/v1/category";
+  const token = localStorage.getItem("token");
+
+  const response = await axiosInstance.get(path, {
+    params: {
+      limit: 10,
+      page: page,
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const categories = response?.["data"]["items"];
-  console.log(categories);
   return categories;
 }
 
@@ -26,10 +40,8 @@ async function getAllExpense() {
     },
   });
 
-  console.log(response);
   const expenses = response?.["data"]["items"];
-  console.log(expenses);
   return expenses;
 }
 
-export { getAllCategory, getAllExpense };
+export { getAllCategory, getAllExpense, getCategoryById };

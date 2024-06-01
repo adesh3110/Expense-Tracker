@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function MainLayout() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) return;
+    navigate("/");
+  }, []);
+
   return (
     <div>
       <nav className='bg-gray-800 p-4'>
@@ -13,14 +20,7 @@ function MainLayout() {
                 Expenses
               </Link>
             </li>
-            <li>
-              <Link
-                to='create-expenses'
-                className='text-white hover:text-gray-400'
-              >
-                Create
-              </Link>
-            </li>
+
             <li>
               <Link to='categories' className='text-white hover:text-gray-400'>
                 Category
