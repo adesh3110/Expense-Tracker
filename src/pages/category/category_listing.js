@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllCategory } from "../../services/display";
 import { deleteCategory } from "../../services/delete";
@@ -21,9 +21,9 @@ const CategoryListing = () => {
     const filtered = categories.filter((e) => e._id !== id);
     setCategories(filtered);
   };
-  useEffect(() => {
-    fetchCategory(page);
-  }, []);
+  // useEffect(() => {
+  //   fetchCategory(page);
+  // }, []);
 
   return (
     <>
