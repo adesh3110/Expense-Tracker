@@ -7,7 +7,7 @@ function MainLayout() {
     const token = localStorage.getItem("token");
     if (token !== null) return;
     navigate("/");
-  }, []);
+  }, [navigate]);
 
   return (
     <div>

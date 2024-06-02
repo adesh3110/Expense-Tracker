@@ -18,13 +18,12 @@ const CategoryListing = () => {
     removeById(id);
   };
   const removeById = (id) => {
-    const filtered = categories.filter((e) => e._id != id);
+    const filtered = categories.filter((e) => e._id !== id);
     setCategories(filtered);
   };
   useEffect(() => {
-    console.log("Category List useEffect");
     fetchCategory(page);
-  }, [page]);
+  }, []);
 
   return (
     <>
@@ -56,7 +55,7 @@ const CategoryListing = () => {
                   </h2>
                   <p className='text-gray-700 mb-4'>{category.description}</p>
                   {
-                    <a href='#' className='text-blue-500 hover:underline'>
+                    <a href='/' className='text-blue-500 hover:underline'>
                       Read more
                     </a>
                   }
