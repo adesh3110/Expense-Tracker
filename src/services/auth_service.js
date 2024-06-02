@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosInstance from "../helper/axios";
 
 async function loginHandler(payload) {
@@ -38,4 +39,20 @@ async function me() {
   }
 }
 
-export { loginHandler, registerHandler, me };
+async function refreshTokenApi() {
+  const path = "https://expense-tracker.nstack.in/v1/auth/refreshToken";
+  const refreshToken = localStorage.getItem("refresh-token");
+  const headers = {
+    "refresh-token": refreshToken,
+  };
+  try {
+    const response = await axios.get(path, { headers });
+    return response?.data;
+  } catch (err) {
+    // window.location.href = "/";
+    console.log(err);
+    return err;
+  }
+}
+
+export { loginHandler, registerHandler, refreshTokenApi, me };

@@ -18,9 +18,10 @@ function LoginPage() {
     setLoading(true);
     const response = await loginHandler(inputs);
     setLoading(false);
-    const token = response?.data?.token;
-    if (token) {
+    const { token, refreshToken } = response?.data;
+    if (token && refreshToken) {
       localStorage.setItem("token", token);
+      localStorage.setItem("refresh-token", refreshToken);
       navigate("/profile");
     } else {
       const statusCode = response.response.status;
