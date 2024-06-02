@@ -13,7 +13,7 @@ const ExpenseListing = () => {
   };
 
   const onDelete = async (id) => {
-    const reponse = await deleteExpense(id);
+    await deleteExpense(id);
     fetchExpense();
   };
 

@@ -26,7 +26,7 @@ function LoginPage() {
     } else {
       const statusCode = response.response.status;
       const data = response.response.data;
-      if (statusCode == 401) {
+      if (statusCode === 401) {
         setErros({ password: ["invalid password"] });
       } else {
         setErros(data);

@@ -27,7 +27,7 @@ export default function EditCategory() {
     navigate("/categories");
   };
 
-  const fetchCategory = async () => {
+  const fetchCategory = async (id) => {
     const data = await getCategoryById(id);
     setFormData({
       title: data["title"],
@@ -37,8 +37,8 @@ export default function EditCategory() {
   };
 
   useEffect(() => {
-    fetchCategory();
-  }, []);
+    fetchCategory(id);
+  }, [id]);
 
   return (
     <>
