@@ -25,10 +25,10 @@ const CreateCategory = () => {
   };
 
   return (
-    <div className='flex items-center justify-center h-screen '>
+    <div className='flex items-center justify-center min-h-screen '>
       <form
         onSubmit={handleSubmit}
-        className='max-w-lg w-full p-4 bg-white shadow-md rounded-md '
+        className='max-w-lg w-full p-4 bg-white  border shadow-md rounded-md '
       >
         <div className='mb-4'>
           <label htmlFor='title' className='block text-gray-700 font-bold mb-2'>
